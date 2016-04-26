@@ -10,4 +10,5 @@ PHP 编码规范，最佳实践。
 * [模板引擎](https://github.com/WisdomFusion/php-specs/blob/master/templating.md)
 * [缓存](https://github.com/WisdomFusion/php-specs/blob/master/caching.md)
 * [PHP 安全编码规范](https://github.com/WisdomFusion/php-specs/blob/master/security-spec.md)
+* [PHP 7](https://github.com/WisdomFusion/php-specs/blob/master/PHP7.md)
 
