@@ -76,22 +76,22 @@ API 接口在 Web 开发中应用广泛，本文旨在为合作应用访问或 A
 * 文档编码格式 UTF-8
 * 接口的返回数据中，数组对应的 xml 节点包含 `list="true"` 属性，其子节点的标签名跟对应的数据有联系，并且同个数组内的同级节点的标签名一致。例如表示问题标题列表对应的 xml 输出可能为：
 
-```xml
-<questionList list="true">
-  <title><![CDATA[为用户解决什么问题？]]></title>
-  <title><![CDATA[从哪些方面着手去解决？]]></title>
-</questionList>
-```
+  ```xml
+  <questionList list="true">
+    <title><![CDATA[为用户解决什么问题？]]></title>
+    <title><![CDATA[从哪些方面着手去解决？]]></title>
+  </questionList>
+  ```
 
-* 接口的返回数据中，对象类型和普通数据类型数据（`string`, `int`, `double`, `bool`）对应的xml节点不包含list属性或者list属性值为false，节点标签名具有实际意义，与数据所描述的信息相符。例如，表示问题的数据对应的xml输出为：
+* 接口的返回数据中，对象类型和普通数据类型数据（`string`, `int`, `double`, `bool`）对应的 xml 节点不包含 list 属性或者 list 属性值为 false，节点标签名具有实际意义，与数据所描述的信息相符。例如，表示问题的数据对应的xml输出为：
 
-```xml
-<question list="false">
-  <title><![CDATA[为用户解决哪些问题？]]></title>
-  <url><![CDATA[https://github.com/]]</url>
-  <content><![CDATA[从哪些方向着手去解决？]]</content>
-</question>
-```
+  ```xml
+  <question list="false">
+    <title><![CDATA[为用户解决哪些问题？]]></title>
+    <url><![CDATA[https://github.com/]]</url>
+    <content><![CDATA[从哪些方向着手去解决？]]</content>
+  </question>
+  ```
 
 #### 2.6.3 JSON 输出格式
 
