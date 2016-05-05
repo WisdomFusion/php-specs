@@ -105,6 +105,7 @@ XML 格式的响应信息如下：
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
+<success>true</success>
 <user>
   <account>test@test.com</account>
   <version><![CDATA[用户版]]></version>
@@ -125,6 +126,7 @@ JSON 格式的响应信息如下：
 
 ```json
 {
+  "success":true,
   "user":{
     "account":"test@test.com",
     "version":"试用版",

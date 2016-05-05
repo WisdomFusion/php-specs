@@ -232,7 +232,7 @@ XML 格式的响应信息如下：
 <user>
   <account>test@test.com</account>
   <version><![CDATA[用户版]]></version>
-  <expired>2011-06-06</expired>
+  <expired>2015-06-06</expired>
   <space>
     <total>2</total>
     <remain>1.9</remain>
@@ -249,7 +249,7 @@ JSON 格式的响应信息如下：
 
 ```json
 {
-  "success":"true",
+  "success":true,
   "user":{
     "account":"test@test.com",
     "version":"试用版",
