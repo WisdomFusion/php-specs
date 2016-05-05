@@ -7,7 +7,7 @@ API 接口在 Web 开发中应用广泛，本文旨在为合作应用访问或 A
 ## 文档结构
 
 * 接口文档均采用 Markdown 格式，扩展名统一使用 `.md`。
-* API 文档有必要包含（不限于）项目简介、开发人员列表、CHANGELOG、名词解释、请数据包格式等内容。
+* API 文档有必要包含（不限于）项目简介、开发人员列表、CHANGELOG、名词解释、通信约定、请数据包格式等内容。
 
 ### 项目简介
 
@@ -27,20 +27,28 @@ API 接口在 Web 开发中应用广泛，本文旨在为合作应用访问或 A
 | 版本号 | 修改内容简介 |   修改日期 | 修改人       |
 |--------|--------------|------------|--------------|
 |    1.0 | 说明         | 2016-04-01 | WisdomFusion |
-|        |              |            |              |
-|        |              |            |              |
-|        |              |            |              |
-|        |              |            |              |
-|        |              |            |              |
-|        |              |            |              |
-|        |              |            |              |
-|        |              |            |              |
-|        |              |            |              |
-|        |              |            |              |
+|    ... |              |            |              |
 
 ### 名词解释
 
 解释 API 接品文档中规定的通用名词，如 API_KEY, API_SECRET 等。
+
+### 通信约定
+
+约定 HTTP 请求方法（具体接口需要准确指定请求方法，下文有说明），返回格式的说明，一般接口用 JSON 格式数据包即可，更通用的接口需要同时提供 XML 格式数据包。
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<error>ERROR_CODE</error>
+```
+
+```json
+{
+ “error”:”ERROR_CODE”
+}
+```
+
+最重要的是，需要约定**加密方式**，所有的 HTTP 通信都需要加密，本节必需明确加密方式及使用方法。
 
 ### 请求数据包格式规范
 
@@ -54,27 +62,6 @@ API调用时如果传递 format 参数为 json（大小写不敏感），则正�
 
 * HTTP 响应头中的 Content-Type 指定为 application/json, charset=utf-8
 * 字符串编码格式是 UTF-8
-
-**XML 输出格式**
-
-* 文档编码格式 UTF-8
-* 接口的返回数据中，数组对应的 xml 节点包含 `list="true"` 属性，其子节点的标签名跟对应的数据有联系，并且同个数组内的同级节点的标签名一致。例如表示问题标题列表对应的 xml 输出可能为：
-
-```xml
-<questionList list="true">
-    <title><![CDATA[北京一共有几个区？]]></title>
-    <title><![CDATA[百度大厦的地址是什么？]]></title>
-</questionList>
-```
-* 接口的返回数据中，对象类型和普通数据类型数据（string, int, double, bool）对应的 xml 节点不包含 list 属性或者 list 属性值为 false，节点标签名具有实际意义，与数据所描述的信息相符。例如，表示问题的数据对应的 xml 输出为：
-
-```xml
-<question list="false">
-    <title><![CDATA[百度大厦的地址是什么？]]></title>
-    <url><![CDATA[http://zhidao.baidu.com/question/133295964.html]]</url>
-    <content><![CDATA[如题，百度大厦地址在]]</ content >
-</question>
-```
 
 **错误响应输出格式**
 
@@ -95,15 +82,7 @@ API调用时如果传递 format 参数为 json（大小写不敏感），则正�
 |          5 | Unauthorized client IP address  | API 调用端的 IP 未被授权 |
 |        100 | Invalid parameter               | 参数无效或数数数量不符   |
 |        101 | Invalid API key                 | API key 无效             |
-|            |                                 |                          |
-|            |                                 |                          |
-|            |                                 |                          |
-|            |                                 |                          |
-|            |                                 |                          |
-|            |                                 |                          |
-|            |                                 |                          |
-|            |                                 |                          |
-|            |                                 |                          |
+|        ... |                                 |                          |
 
 ## 接口细则
 
@@ -112,9 +91,103 @@ API 接口需要包含的内容：
 * **功能**：功能说明
 * **请求方法**：POST|GET
 * **请求URL**：REST URL
-* **请求参数**：各参数说明，包括参数名、类型和描述
+* **请求参数**：各参数说明，包括参数名、是否必选、类型和描述，需要注意的是如果接口需要提供 JSON 和 XML 两种格式的数据包的话，请求参数必须加上 `format`，可选值为 `json` 或 `xml`
 * **响应参数**：各字段说明，包括标签名和描述
 * **示例**：给出一个请求和响应的示例
+
+如，
+
+**功能**
+
+获取用户信息
+
+**请求方法**
+
+`GET`
+
+**请求URL**
+
+`/api/user`
+
+**请求参数**
+
+| 参数名 | 必选 | 类型   | 描述                        |
+|--------|------|--------|-----------------------------|
+| userid | Y    | Number | 用户 ID，不可为空           |
+| format | Y    | String | 返回数据的格式，json 或 xml |
+
+**响应参数**
+
+返回数据 user
+
+| 字段名       | 描述         |
+|--------------|--------------|
+| accout       | 用户账户     |
+| version      | 版本信息     |
+| expired_time | 到期时间     |
+| space        | 用户空间信息 |
+| traffic      | 用户流量信息 |
+
+space 包含字段列表：
+
+| 字段名 | 描述                     |
+|--------|--------------------------|
+| total  | 用户空间总量，单位 G     |
+| remain | 用户空间剩余量，单位 G   |
+| used   | 用户空间使用总量，单位 G |
+
+traffic 包含字段列表：
+
+| 字段名 | 描述                     |
+|--------|--------------------------|
+| total  | 用户空间总量，单位 G     |
+| remain | 用户空间剩余量，单位 G   |
+| used   | 用户空间使用总量，单位 G |
+
+
+**示例**：给出一个请求和响应的示例
+
+XML 格式的响应信息如下：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<user>
+  <account>test@test.com</account>
+  <version><![CDATA[用户版]]></version>
+  <expired>2011-06-06</expired>
+  <space>
+    <total>2</total>
+    <remain>1.9</remain>
+    <used>0.1</used>
+  </space>
+  <traffic>
+    <total>5</total>
+    <remain>4.8</remain>
+    <used>0.2</used>
+  </traffic>
+</user>
+```
+JSON 格式的响应信息如下：
+
+```json
+{
+  "user":{
+    "account":"test@test.com",
+    "version":"试用版",
+    "expired":"2011-06-06",
+    "space":{
+      "total":2,
+      "remain":1.9,
+      "used":0.1
+    },
+    "traffic":{
+      "total":5,
+      "remain":4.8,
+      "used":0.2
+    }
+  }
+}
+```
 
 ## 模板
 
