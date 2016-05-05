@@ -90,6 +90,7 @@ API调用时如果传递 `format` 参数为 `json`（大小写不敏感），则
 
 * HTTP 响应头中的 `Content-Type` 指定为 `application/json, charset=utf-8`
 * 字符串编码格式是 `UTF-8`
+* PHP 数组的标准 JSON 字符串
 * 标准 JSON 格式请参看官网：[JSON (JavaScript Object Notation)](http://www.json.org/)
 
 一个复杂点的 JSON 输出示例：
@@ -128,46 +129,6 @@ API调用时如果传递 `format` 参数为 `json`（大小写不敏感），则
     },
     "links": {
       "self": "http://example.com/articles/1"
-    }
-  }],
-  "included": [{
-    "type": "people",
-    "id": "9",
-    "attributes": {
-      "first-name": "Dan",
-      "last-name": "Gebhardt",
-      "twitter": "dgeb"
-    },
-    "links": {
-      "self": "http://example.com/people/9"
-    }
-  }, {
-    "type": "comments",
-    "id": "5",
-    "attributes": {
-      "body": "First!"
-    },
-    "relationships": {
-      "author": {
-        "data": { "type": "people", "id": "2" }
-      }
-    },
-    "links": {
-      "self": "http://example.com/comments/5"
-    }
-  }, {
-    "type": "comments",
-    "id": "12",
-    "attributes": {
-      "body": "I like XML better"
-    },
-    "relationships": {
-      "author": {
-        "data": { "type": "people", "id": "9" }
-      }
-    },
-    "links": {
-      "self": "http://example.com/comments/12"
     }
   }]
 }
