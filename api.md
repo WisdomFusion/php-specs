@@ -48,10 +48,14 @@ API 接口在 Web 开发中应用广泛，本文旨在为合作应用访问或 A
 
 约定 HTTP 请求方法（具体接口需要准确指定请求方法，下文有说明），返回格式的说明，一般接口用 JSON 格式数据包即可，更通用的接口需要同时提供 XML 格式数据包。
 
+**XML**
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <error>ERROR_CODE</error>
 ```
+
+**JSON**
 
 ```json
 {
