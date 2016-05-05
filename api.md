@@ -44,7 +44,7 @@ API 接口在 Web 开发中应用广泛，本文旨在为合作应用访问或 A
 
 ```json
 {
- “error”:”ERROR_CODE”
+  "error":"ERROR_CODE"
 }
 ```
 
@@ -55,6 +55,26 @@ API 接口在 Web 开发中应用广泛，本文旨在为合作应用访问或 A
 **参数约定**
 
 所有参数均用小写字母，多个单词用 `_` 连接，如 `access_token`，单词尽可能简单、准确。
+
+* 文档编码格式UTF-8
+* 接口的返回数据中，数组对应的xml节点包含list=”true”属性，其子节点的标签名跟对应的数据有联系，并且同个数组内的同级节点的标签名一致。例如表示问题标题列表对应的xml输出可能为：
+
+```xml
+<questionList list="true">
+  <title><![CDATA[为用户解决什么问题？]]></title>
+  <title><![CDATA[从哪些方面着手去解决？]]></title>
+</questionList>
+```
+
+* 接口的返回数据中，对象类型和普通数据类型数据（`string`, `int`, `double`, `bool`）对应的xml节点不包含list属性或者list属性值为false，节点标签名具有实际意义，与数据所描述的信息相符。例如，表示问题的数据对应的xml输出为：
+
+```
+<question list="false">
+  <title><![CDATA[为用户解决哪些问题？]]></title>
+  <url><![CDATA[https://github.com/]]</url>
+  <content><![CDATA[从哪些方向着手去解决？]]</ content >
+</question>
+```
 
 **JSON 输出格式**
 
@@ -67,8 +87,8 @@ API调用时如果传递 format 参数为 json（大小写不敏感），则正�
 
 错误响应输出内容符合以下规范：
 
-* 返回内容由error_code, error_msg, request_args 这3个属性组成，分别用于描述错误码，错误信息，以及调用 API 时所传递的所有参数的信息
-* request_args 属性是一个数组，由若干包含 key 和 value 属性的对象组成
+* 返回内容由 `error_code`, `error_msg`, `request_args` 这3个属性组成，分别用于描述错误码，错误信息，以及调用 API 时所传递的所有参数的信息
+* `request_args` 属性是一个数组，由若干包含 `key` 和 `value` 属性的对象组成
 
 ## 错误码定义
 
@@ -113,8 +133,8 @@ API 接口需要包含的内容：
 
 | 参数名 | 必选 | 类型   | 描述                        |
 |--------|------|--------|-----------------------------|
-| userid | Y    | Number | 用户 ID，不可为空           |
-| format | Y    | String | 返回数据的格式，json 或 xml |
+| userid | Y    | int    | 用户 ID，不可为空           |
+| format | Y    | string | 返回数据的格式，json 或 xml |
 
 **响应参数**
 
