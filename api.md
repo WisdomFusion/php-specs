@@ -150,7 +150,7 @@ API调用时如果传递 `format` 参数为 `json`（大小写不敏感），则
 
 | error_code | error_msg                       | 描述                     |
 |------------|---------------------------------|--------------------------|
-|          0 | Success                         | 成功                     |
+|    success | true                            | 成功                     | 
 |          1 | Unknown error                   | 未知错误                 |
 |          2 | Service temporarily unavailable | 服务暂时不可用           |
 |          3 | Unsupported API method          | API 接口不被支持         |
@@ -159,6 +159,8 @@ API调用时如果传递 `format` 参数为 `json`（大小写不敏感），则
 |        100 | Invalid parameter               | 参数无效或数数数量不符   |
 |        101 | Invalid API key                 | API key 无效             |
 |        ... |                                 |                          |
+
+错误码可以根据项目实际情况约定，使用统一的定义即可，以上只作参考。
 
 ## 2.8 接口细则
 
