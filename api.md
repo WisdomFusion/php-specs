@@ -86,11 +86,92 @@ API 接口在 Web 开发中应用广泛，本文旨在为合作应用访问或 A
 
 #### 2.6.3 JSON 输出格式
 
-API调用时如果传递 format 参数为 json（大小写不敏感），则正常响应包符合如下规范的 json 字符串：
+API调用时如果传递 `format` 参数为 `json`（大小写不敏感），则正常响应包符合如下规范的 `json` 字符串：
 
-* HTTP 响应头中的 Content-Type 指定为 application/json, charset=utf-8
-* 字符串编码格式是 UTF-8
+* HTTP 响应头中的 `Content-Type` 指定为 `application/json, charset=utf-8`
+* 字符串编码格式是 `UTF-8`
 * 标准 JSON 格式请参看官网：[JSON (JavaScript Object Notation)](http://www.json.org/)
+
+一个复杂点的 JSON 输出示例：
+
+```json
+{
+  "links": {
+    "self": "http://example.com/articles",
+    "next": "http://example.com/articles?page[offset]=2",
+    "last": "http://example.com/articles?page[offset]=10"
+  },
+  "data": [{
+    "type": "articles",
+    "id": "1",
+    "attributes": {
+      "title": "JSON API paints my bikeshed!"
+    },
+    "relationships": {
+      "author": {
+        "links": {
+          "self": "http://example.com/articles/1/relationships/author",
+          "related": "http://example.com/articles/1/author"
+        },
+        "data": { "type": "people", "id": "9" }
+      },
+      "comments": {
+        "links": {
+          "self": "http://example.com/articles/1/relationships/comments",
+          "related": "http://example.com/articles/1/comments"
+        },
+        "data": [
+          { "type": "comments", "id": "5" },
+          { "type": "comments", "id": "12" }
+        ]
+      }
+    },
+    "links": {
+      "self": "http://example.com/articles/1"
+    }
+  }],
+  "included": [{
+    "type": "people",
+    "id": "9",
+    "attributes": {
+      "first-name": "Dan",
+      "last-name": "Gebhardt",
+      "twitter": "dgeb"
+    },
+    "links": {
+      "self": "http://example.com/people/9"
+    }
+  }, {
+    "type": "comments",
+    "id": "5",
+    "attributes": {
+      "body": "First!"
+    },
+    "relationships": {
+      "author": {
+        "data": { "type": "people", "id": "2" }
+      }
+    },
+    "links": {
+      "self": "http://example.com/comments/5"
+    }
+  }, {
+    "type": "comments",
+    "id": "12",
+    "attributes": {
+      "body": "I like XML better"
+    },
+    "relationships": {
+      "author": {
+        "data": { "type": "people", "id": "9" }
+      }
+    },
+    "links": {
+      "self": "http://example.com/comments/12"
+    }
+  }]
+}
+```
 
 #### 2.6.4 错误响应输出格式
 
