@@ -85,7 +85,7 @@ API 接口在 Web 开发中应用广泛，本文旨在为合作应用访问或 A
 <question list="false">
   <title><![CDATA[为用户解决哪些问题？]]></title>
   <url><![CDATA[https://github.com/]]</url>
-  <content><![CDATA[从哪些方向着手去解决？]]</ content >
+  <content><![CDATA[从哪些方向着手去解决？]]</content>
 </question>
 ```
 
