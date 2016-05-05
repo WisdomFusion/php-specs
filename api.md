@@ -148,9 +148,10 @@ API调用时如果传递 `format` 参数为 `json`（大小写不敏感），则
 
 ## 2.7 错误码定义
 
+每个响应的返回数据中，成功则先添加一个 `success:true` 的字段，错误即返回错误码，错误码定义示例：
+
 | error_code | error_msg                       | 描述                     |
 |------------|---------------------------------|--------------------------|
-|    success | true                            | 成功                     | 
 |          1 | Unknown error                   | 未知错误                 |
 |          2 | Service temporarily unavailable | 服务暂时不可用           |
 |          3 | Unsupported API method          | API 接口不被支持         |
@@ -227,6 +228,7 @@ XML 格式的响应信息如下：
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
+<success>true</success>
 <user>
   <account>test@test.com</account>
   <version><![CDATA[用户版]]></version>
@@ -247,10 +249,11 @@ JSON 格式的响应信息如下：
 
 ```json
 {
+  "success":"true",
   "user":{
     "account":"test@test.com",
     "version":"试用版",
-    "expired":"2011-06-06",
+    "expired":"2015-06-06",
     "space":{
       "total":2,
       "remain":1.9,

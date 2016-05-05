@@ -36,9 +36,10 @@
 
 ## 6. 错误码定义
 
+每个响应的返回数据中，成功则先添加一个 `success:true` 的字段，错误即返回错误码，错误码定义：
+
 | error_code | error_msg                       | 描述                     |
 |------------|---------------------------------|--------------------------|
-|          0 | Success                         | 成功                     |
 |          1 | Unknown error                   | 未知错误                 |
 |          2 | Service temporarily unavailable | 服务暂时不可用           |
 |          3 | Unsupported API method          | API 接口不被支持         |
