@@ -1,7 +1,5 @@
 # [`<h1>` 项目名称] API 接口文档[模板]
 
-[TOC]
-
 ## 1. 项目简介
 
 [ 简要说明项目的来龙去脉，并对接口文档适用对象作简要说明。]
@@ -55,96 +53,95 @@
 
 ### `<h3>` 获取用户信息
 
-**功能：**获取用户信息
+* 功能：获取用户信息
 
-**请求方法：**GET
+* 请求方法：GET
 
-**请求URL：**/api/user
+* 请求URL：/api/user
 
-**请求参数：**
+* 请求参数：
 
-| 参数名 | 必选 | 类型   | 描述                        |
-|--------|------|--------|-----------------------------|
-| userid | Y    | int    | 用户 ID，不可为空           |
-| format | Y    | string | 返回数据的格式，json 或 xml |
+  | 参数名 | 必选 | 类型   | 描述                        |
+  |--------|------|--------|-----------------------------|
+  | userid | Y    | int    | 用户 ID，不可为空           |
+  | format | Y    | string | 返回数据的格式，json 或 xml |
 
-**响应参数：**
+* 响应参数：
 
-返回数据 user
+  返回数据 user
+  
+  | 字段名       | 描述         |
+  |--------------|--------------|
+  | accout       | 用户账户     |
+  | version      | 版本信息     |
+  | expired_time | 到期时间     |
+  | space        | 用户空间信息 |
+  | traffic      | 用户流量信息 |
+  
+  space 包含字段列表：
+  
+  | 字段名 | 描述                     |
+  |--------|--------------------------|
+  | total  | 用户空间总量，单位 G     |
+  | remain | 用户空间剩余量，单位 G   |
+  | used   | 用户空间使用总量，单位 G |
+  
+  traffic 包含字段列表：
+  
+  | 字段名 | 描述                     |
+  |--------|--------------------------|
+  | total  | 用户空间总量，单位 G     |
+  | remain | 用户空间剩余量，单位 G   |
+  | used   | 用户空间使用总量，单位 G |
+  
+* 错误码：
 
-| 字段名       | 描述         |
-|--------------|--------------|
-| accout       | 用户账户     |
-| version      | 版本信息     |
-| expired_time | 到期时间     |
-| space        | 用户空间信息 |
-| traffic      | 用户流量信息 |
+  当前接口错误码列表，上文“错误码定义”一节已定义通用错误码列表。如果没有的话，省略此项。
 
-space 包含字段列表：
+* 示例：
 
-| 字段名 | 描述                     |
-|--------|--------------------------|
-| total  | 用户空间总量，单位 G     |
-| remain | 用户空间剩余量，单位 G   |
-| used   | 用户空间使用总量，单位 G |
-
-traffic 包含字段列表：
-
-| 字段名 | 描述                     |
-|--------|--------------------------|
-| total  | 用户空间总量，单位 G     |
-| remain | 用户空间剩余量，单位 G   |
-| used   | 用户空间使用总量，单位 G |
-
-
-**错误码：**
-
-当前接口错误码列表，上文“错误码定义”一节已定义通用错误码列表。如果没有的话，省略此项。
-
-**示例：**
-
-XML 格式的响应信息如下：
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<success>true</success>
-<user>
-  <account>test@test.com</account>
-  <version><![CDATA[用户版]]></version>
-  <expired>2011-06-06</expired>
-  <space>
-    <total>2</total>
-    <remain>1.9</remain>
-    <used>0.1</used>
-  </space>
-  <traffic>
-    <total>5</total>
-    <remain>4.8</remain>
-    <used>0.2</used>
-  </traffic>
-</user>
-```
-JSON 格式的响应信息如下：
-
-```json
-{
-  "success":true,
-  "user":{
-    "account":"test@test.com",
-    "version":"试用版",
-    "expired":"2011-06-06",
-    "space":{
-      "total":2,
-      "remain":1.9,
-      "used":0.1
-    },
-    "traffic":{
-      "total":5,
-      "remain":4.8,
-      "used":0.2
+  XML 格式的响应信息如下：
+  
+  ```xml
+  <?xml version="1.0" encoding="UTF-8"?>
+  <success>true</success>
+  <user>
+    <account>test@test.com</account>
+    <version><![CDATA[用户版]]></version>
+    <expired>2011-06-06</expired>
+    <space>
+      <total>2</total>
+      <remain>1.9</remain>
+      <used>0.1</used>
+    </space>
+    <traffic>
+      <total>5</total>
+      <remain>4.8</remain>
+      <used>0.2</used>
+    </traffic>
+  </user>
+  ```
+  JSON 格式的响应信息如下：
+  
+  ```json
+  {
+    "success":true,
+    "user":{
+      "account":"test@test.com",
+      "version":"试用版",
+      "expired":"2011-06-06",
+      "space":{
+        "total":2,
+        "remain":1.9,
+        "used":0.1
+      },
+      "traffic":{
+        "total":5,
+        "remain":4.8,
+        "used":0.2
+      }
     }
   }
-}
-```
+  ```
 
 
