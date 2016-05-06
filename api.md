@@ -182,17 +182,14 @@ API 接口需要包含的内容：
 如，例，例如，比如，for example, for instance, eg., ... :smile:
 
 * 功能：获取用户信息
-* 请求方法：GET
-* 请求 URL：/api/user
+* 请求方法：`GET`
+* 请求 URL：`/api/user`
 * 请求参数：
-
   | 参数名 | 必选 | 类型   | 描述                        |
   |--------|------|--------|-----------------------------|
   | userid | Y    | int    | 用户 ID，不可为空           |
   | format | Y    | string | 返回数据的格式，json 或 xml |
-
 * 响应参数：
-
   返回数据 user
 
   | 字段名       | 描述         |
