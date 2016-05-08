@@ -4,7 +4,7 @@ PHP Specifications, and best practice.
 
 PHP 编码规范，最佳实践。
 
-* [ ] [PSR 摘要](psr-standards.md)
+* [x] [PSR 摘要](psr-standards.md)
 * [ ] [PHP 最佳实践](best-practice.md)
 * [ ] [缓存](caching.md)
 * [ ] [MySQL 查询优化](mysql-query-optimization.md)
