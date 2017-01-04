@@ -160,6 +160,53 @@ API调用时如果传递 `format` 参数为 `json`（大小写不敏感），则
 | userid | Y    | int    | 用户 ID，不可为空           |
 | format | Y    | string | 返回数据的格式，json 或 xml |
 
+* **返回示例：**
+
+XML 格式的响应信息如下：
+  
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<success>true</success>
+<user>
+  <account>test@test.com</account>
+  <version><![CDATA[用户版]]></version>
+  <expired>2015-06-06</expired>
+  <space>
+    <total>2</total>
+    <remain>1.9</remain>
+    <used>0.1</used>
+  </space>
+  <traffic>
+    <total>5</total>
+    <remain>4.8</remain>
+    <used>0.2</used>
+  </traffic>
+</user>
+```
+
+JSON 格式的响应信息如下：
+
+```json
+{
+  "success":true,
+  "user":{
+    "account":"test@test.com",
+    "version":"试用版",
+    "expired":"2015-06-06",
+    "space":{
+      "total":2,
+      "remain":1.9,
+      "used":0.1
+    },
+    "traffic":{
+      "total":5,
+      "remain":4.8,
+      "used":0.2
+    }
+  }
+}
+```
+
 * **响应参数：**
 
 返回数据 user
@@ -187,56 +234,6 @@ traffic 包含字段列表：
 | total  | 用户空间总量，单位 G     |
 | remain | 用户空间剩余量，单位 G   |
 | used   | 用户空间使用总量，单位 G |
-
-* **错误码：**
-
-当前接口错误码列表，上文“错误码定义”一节已定义通用错误码列表。
-
-* **示例：**
-
-XML 格式的响应信息如下：
-  
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<success>true</success>
-<user>
-  <account>test@test.com</account>
-  <version><![CDATA[用户版]]></version>
-  <expired>2015-06-06</expired>
-  <space>
-    <total>2</total>
-    <remain>1.9</remain>
-    <used>0.1</used>
-  </space>
-  <traffic>
-    <total>5</total>
-    <remain>4.8</remain>
-    <used>0.2</used>
-  </traffic>
-</user>
-```
-JSON 格式的响应信息如下：
-
-```json
-{
-  "success":true,
-  "user":{
-    "account":"test@test.com",
-    "version":"试用版",
-    "expired":"2015-06-06",
-    "space":{
-      "total":2,
-      "remain":1.9,
-      "used":0.1
-    },
-    "traffic":{
-      "total":5,
-      "remain":4.8,
-      "used":0.2
-    }
-  }
-}
-```
 
 ## 3. 接口文档模板
 
