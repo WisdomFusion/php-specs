@@ -193,7 +193,7 @@ OK了，正常执行，以下示例为 PHP 框架 Laravel 返回带有分页数�
 
 ```json
 {
-    "status: 200,
+    "status": 200,
     "message": "success",
     "data": {
         "current_page": 1,
