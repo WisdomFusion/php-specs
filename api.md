@@ -191,7 +191,7 @@ W3 为 HTTP 请求定义了超过 40 个标准状态码，但实际 API 在设�
 
 OK了，正常执行，以下示例为 PHP 框架 Laravel 返回带有分页数据：
 
-```json
+```javascript
 {
     "status": 200,
     "message": "success",
@@ -222,7 +222,7 @@ OK了，正常执行，以下示例为 PHP 框架 Laravel 返回带有分页数�
 
 服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。一般性错误都用该错误状态，返回数据的 `message` 字段描述客户端请求的错误所在。
 
-```json
+```javascript
 {
     "status": 400,
     "message": "该用户已产生数据，无法执行删除操作！",
@@ -234,7 +234,7 @@ OK了，正常执行，以下示例为 PHP 框架 Laravel 返回带有分页数�
 
 请求未授权。如果请求 header 没有 Authorization 字段，服务器端应该在返回 401 Unauthorized 的同时在 header 中用 WWW-Authorization 字段指出授权方式，以便客户端带上登录信息重新发起请求。如果 Authorization 字段已经存在，则表明登录信息不正确（含已过期）。
 
-```json
+```javascript
 {
     "status": 401,
     "message": "Unauthorized",
@@ -246,14 +246,14 @@ OK了，正常执行，以下示例为 PHP 框架 Laravel 返回带有分页数�
 
 表单验证失败。
 
-```json
+```javascript
 {
     "status": 400,
     "message": "Form validation failed",
     "data": {
         "email": [
             "邮箱地址不合法。"
-        ]
+        ],
         "password": [
             "密码不能为空。"
         ]
@@ -265,7 +265,7 @@ OK了，正常执行，以下示例为 PHP 框架 Laravel 返回带有分页数�
 
 服务器内部错误。服务器遇到异常情况，无法完成该请求。
 
-```json
+```javascript
 {
     "status": 500,
     "message": "服务器在删除该数据时出错，请重试或联系网站管理员。",
