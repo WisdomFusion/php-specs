@@ -179,20 +179,91 @@ API调用时如果传递 `format` 参数为 `json`（大小写不敏感），则
 
 ### 2.6 状态码定义
 
-每个响应的返回数据中，成功则先添加一个 `success:true` 的字段，错误即返回错误码，错误码定义示例：
 
-| error_code | error_msg                       | 描述                     |
-|------------|---------------------------------|--------------------------|
-|          1 | Unknown error                   | 未知错误                 |
-|          2 | Service temporarily unavailable | 服务暂时不可用           |
-|          3 | Unsupported API method          | API 接口不被支持         |
-|          4 | API request limit reached       | 请求数达到上限           |
-|          5 | Unauthorized client IP address  | API 调用端的 IP 未被授权 |
-|        100 | Invalid parameter               | 参数无效或数数数量不符   |
-|        101 | Invalid API key                 | API key 无效             |
-|        ... |                                 |                          |
+RFC 2616
+https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
-错误码可以根据项目实际情况约定，使用统一的定义即可，以上只作参考。
+**200 - OK**
+
+OK了，正常执行，以下示例为 PHP 框架 Laravel 返回带有分页数据：
+
+```json
+{
+    status: 200,
+    message: 'success',
+    data: {
+        current_page: 1,
+        from: 1,
+        last_page: 1,
+        next_page_url: null,
+        path: 'http://apiurl/api/foobar',
+        per_page: 20,
+        prev_page_url: null,
+        to: 2,
+        total: 2,
+        data: [
+            {
+                ...
+            },
+            {
+                ...
+            },
+            ...
+        ]
+    }
+}
+```
+
+**400 - Bad Request (client-side error)**
+
+服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。一般性错误都用该错误状态，返回数据的 `message` 字段描述客户端请求的错误所在。
+
+```json
+{
+    status: 400,
+    message: '该用户已产生数据，无法执行删除操作！',
+    data: {}
+}
+```
+
+**401 - Unauthorized**
+
+请求未授权。如果请求 header 没有 Authorization 字段，服务器端应该在返回 401 Unauthorized 的同时在 header 中用 WWW-Authorization 字段指出授权方式，以便客户端带上登录信息重新发起请求。如果 Authorization 字段已经存在，则表明登录信息不正确（含已过期）。
+
+```json
+{
+    status: 401,
+    message: 'Unauthorized',
+    data: {}
+}
+```
+
+**422 - Form Validation Failed**
+
+表单验证失败。
+
+```
+{
+    status: 400,
+    message: 'Validation failed',
+    data: {
+        email: '邮箱地址不合法。',
+        password: '密码不能为空。'
+    }
+}
+```
+
+**500 - Internal Server Error (server-side error)**
+
+服务器内部错误。服务器遇到异常情况，无法完成该请求。
+
+```json
+{
+    status: 500,
+    message: '服务器在删除该数据时出错，请重试或联系网站管理员。',
+    data: {}
+}
+```
 
 ### 2.7 接口细则
 
