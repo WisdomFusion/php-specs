@@ -189,19 +189,19 @@ OK了，正常执行，以下示例为 PHP 框架 Laravel 返回带有分页数�
 
 ```json
 {
-    status: 200,
-    message: 'success',
-    data: {
-        current_page: 1,
-        from: 1,
-        last_page: 1,
-        next_page_url: null,
-        path: 'http://apiurl/api/foobar',
-        per_page: 20,
-        prev_page_url: null,
-        to: 2,
-        total: 2,
-        data: [
+    "status: 200,
+    "message": "success",
+    "data": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "next_page_url": null,
+        "path": "http://apiurl/api/foobar",
+        "per_page": 20,
+        "prev_page_url": null,
+        "to": 2,
+        "total": 2,
+        "data": [
             {
                 ...
             },
@@ -220,9 +220,9 @@ OK了，正常执行，以下示例为 PHP 框架 Laravel 返回带有分页数�
 
 ```json
 {
-    status: 400,
-    message: '该用户已产生数据，无法执行删除操作！',
-    data: {}
+    "status": 400,
+    "message": "该用户已产生数据，无法执行删除操作！",
+    "data": {}
 }
 ```
 
@@ -232,9 +232,9 @@ OK了，正常执行，以下示例为 PHP 框架 Laravel 返回带有分页数�
 
 ```json
 {
-    status: 401,
-    message: 'Unauthorized',
-    data: {}
+    "status": 401,
+    "message": "Unauthorized",
+    "data": {}
 }
 ```
 
@@ -242,13 +242,13 @@ OK了，正常执行，以下示例为 PHP 框架 Laravel 返回带有分页数�
 
 表单验证失败。
 
-```
+```json
 {
-    status: 400,
-    message: 'Validation failed',
-    data: {
-        email: '邮箱地址不合法。',
-        password: '密码不能为空。'
+    "status": 400,
+    "message": 'Validation failed',
+    "data": {
+        "email": "邮箱地址不合法。",
+        "password": "密码不能为空。"
     }
 }
 ```
@@ -259,9 +259,9 @@ OK了，正常执行，以下示例为 PHP 框架 Laravel 返回带有分页数�
 
 ```json
 {
-    status: 500,
-    message: '服务器在删除该数据时出错，请重试或联系网站管理员。',
-    data: {}
+    "status": 500,
+    "message": "服务器在删除该数据时出错，请重试或联系网站管理员。",
+    "data": {}
 }
 ```
 
