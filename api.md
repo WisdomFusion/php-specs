@@ -179,9 +179,13 @@ API调用时如果传递 `format` 参数为 `json`（大小写不敏感），则
 
 ### 2.6 状态码定义
 
+W3 为 HTTP 请求定义了超过 40 个标准状态码，但实际 API 在设计时，这么多状态码过于繁重，个人建议使用如下三类状态码即可：
 
-RFC 2616
-https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+* 200 成功状态
+* 400 客户端错误状态
+* 500 服务端错误状态
+
+可以根据实际业务添加必要的其他状态码，如 422 表单验证失败，401 认证失败等等，最后不要超过8个。这些状态码的含义参看 [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)。
 
 **200 - OK**
 
@@ -245,7 +249,7 @@ OK了，正常执行，以下示例为 PHP 框架 Laravel 返回带有分页数�
 ```json
 {
     "status": 400,
-    "message": 'Validation failed',
+    "message": "Validation failed",
     "data": {
         "email": "邮箱地址不合法。",
         "password": "密码不能为空。"
